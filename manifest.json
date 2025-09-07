@@ -1,0 +1,16 @@
+{
+    "name": "Bank Inspector",
+    "short_name": "Inspector",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#FFF8E1",
+    "theme_color": "#FFAB91",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ]
+}

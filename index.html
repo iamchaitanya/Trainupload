@@ -1,14 +1,164 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Inspector</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <header>
+            <h1>Inspection Details</h1>
+        </header>
+        <main>
+            <div id="notification" class="notification"></div>
+            <form id="inspection-form">
+                <div class="input-group">
+                    <label>Date</label>
+                    <div class="date-picker-group">
+                        <select id="day-select" name="day"></select>
+                        <select id="month-select" name="month"></select>
+                        <select id="year-select" name="year"></select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Day Status</label>
+                    <div class="radio-button-group" id="day-status-group">
+                        <input type="radio" id="status-inspection" name="day-status" value="inspection" checked>
+                        <label for="status-inspection">Inspection</label>
+
+                        <input type="radio" id="status-holiday" name="day-status" value="holiday">
+                        <label for="status-holiday">Holiday</label>
+
+                        <input type="radio" id="status-leave" name="day-status" value="leave">
+                        <label for="status-leave">Leave</label>
+                    </div>
+                </div>
+
+                <div id="inspection-fields-container">
+                    <div class="input-group">
+                        <label for="branch-name">Branch Name</label>
+                        <input type="text" id="branch-name" name="branch-name">
+                    </div>
+                    <div class="input-group">
+                        <label for="dp-code">DP Code</label>
+                        <input type="text" id="dp-code" name="dp-code">
+                    </div>
+                    <div class="input-group">
+                        <label for="inspection-type">Inspection Type</label>
+                        <select id="inspection-type" name="inspection-type">
+                            <option value="RBIA">RBIA</option>
+                            <option value="CAD">CAD</option>
+                            <option value="CAD Effectiveness">CAD Effectiveness</option>
+                            <option value="Income Audit">Income Audit</option>
+                            <option value="CPH audit">CPH audit</option>
+                            <option value="Tab Banking">Tab Banking</option>
+                            <option value="SNAP Audit">SNAP Audit</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="other-inspection-type-container" style="display: none;">
+                        <label for="other-inspection-type">Please Specify</label>
+                        <input type="text" id="other-inspection-type" name="other-inspection-type">
+                    </div>
+
+                    <fieldset>
+                        <legend>Onward Journey</legend>
+                        <div class="input-group">
+                            <label for="onward-from">From</label>
+                            <input type="text" id="onward-from" name="onward-from">
+                        </div>
+                        <div class="input-group">
+                            <label for="onward-to">To</label>
+                            <input type="text" id="onward-to" name="onward-to">
+                        </div>
+                        <div class="input-group">
+                            <label for="onward-start-time">Start Time</label>
+                            <input type="time" id="onward-start-time" name="onward-start-time">
+                        </div>
+                        <div class="input-group">
+                            <label for="onward-arrived-time">Arrived Time</label>
+                            <input type="time" id="onward-arrived-time" name="onward-arrived-time">
+                        </div>
+                        <div class="input-group">
+                            <label for="onward-ticket-amount">Ticket Amount</label>
+                            <input type="number" id="onward-ticket-amount" name="onward-ticket-amount">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Return Journey</legend>
+                        <div class="input-group">
+                            <label for="return-from">From</label>
+                            <input type="text" id="return-from" name="return-from">
+                        </div>
+                        <div class="input-group">
+                            <label for="return-to">To</label>
+                            <input type="text" id="return-to" name="return-to">
+                        </div>
+                        <div class="input-group">
+                            <label for="return-start-time">Start Time</label>
+                            <input type="time" id="return-start-time" name="return-start-time">
+                        </div>
+                        <div class="input-group">
+                            <label for="return-arrived-time">Arrived Time</label>
+                            <input type="time" id="return-arrived-time" name="return-arrived-time">
+                        </div>
+                        <div class="input-group">
+                            <label for="return-ticket-amount">Ticket Amount</label>
+                            <input type="number" id="return-ticket-amount" name="return-ticket-amount">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Expenses</legend>
+                        <div class="input-group">
+                            <label for="halting-amount">Halting Amount</label>
+                            <input type="number" id="halting-amount" name="halting-amount">
+                        </div>
+                        <div class="input-group">
+                            <label for="lodging-amount">Lodging Amount</label>
+                            <input type="number" id="lodging-amount" name="lodging-amount">
+                        </div>
+                    </fieldset>
+                </div>
+                <button type="submit" id="save-button">
+                    <span class="button-text">Save</span>
+                </button>
+            </form>
+        </main>
+        <div class="saved-records-container">
+            <h2>Saved Records</h2>
+            <div class="download-buttons">
+                <select id="download-month-select">
+                    <option value="all">All Months</option>
+                </select>
+                <button id="download-excel">Download as Excel</button>
+                <button id="download-pdf">Download as PDF</button>
+            </div>
+            <div class="table-responsive">
+                <table id="records-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Branch Name</th>
+                            <th>DP Code</th>
+                            <th>Inspection Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-list">
+                        <!-- Saved records will be injected here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
