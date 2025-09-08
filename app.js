@@ -1,15 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-                registration.unregister().then(unregistered => console.log(`Service worker unregistered: ${unregistered}`)).catch(err => console.error(`Service worker unregistration failed: ${err}`));
-            }
-            if (registrations.length > 0) {
-                window.location.reload();
-            }
-        }).catch(err => console.error('Error getting service worker registrations:', err));
-    }
-
     const form = document.getElementById('inspection-form');
     const saveButton = document.getElementById('save-button');
     const buttonText = saveButton.querySelector('.button-text');
@@ -172,10 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
             groupedRecords[monthYear].push({ ...record, id });
         });
 
-        const sortedMonthYears = Object.keys(groupedRecords).sort((a, b) => new Date(b) - new Date(a));
+        const sortedMonthYears = Object.keys(groupedRecords).sort((a, b) => {
+            const dateA = new Date(groupedRecords[a][0].date + 'T00:00:00');
+            const dateB = new Date(groupedRecords[b][0].date + 'T00:00:00');
+            return dateB - dateA;
+        });
 
         sortedMonthYears.forEach(monthYear => {
-            // Populate download dropdown
             const option = document.createElement('option');
             option.value = monthYear;
             option.textContent = monthYear;
@@ -253,14 +245,17 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('inspectionRecords', JSON.stringify(records));
 
         loadAndDisplayRecords();
-        form.reset();
-        const today = new Date();
-        yearSelect.value = today.getFullYear();
-        monthSelect.value = today.getMonth();
+        
+        // Increment date for the next entry
+        const currentDate = new Date(year, monthSelect.value, day);
+        currentDate.setDate(currentDate.getDate() + 1);
+
+        yearSelect.value = currentDate.getFullYear();
+        monthSelect.value = currentDate.getMonth();
         populateDays();
-        daySelect.value = today.getDate();
-        document.getElementById('status-inspection').checked = true;
-        handleDayStatusChange();
+        daySelect.value = currentDate.getDate();
+        
+        showNotification('Record saved successfully. Date advanced to the next day.', false);
 
         saveButton.classList.add('saved');
         buttonText.textContent = 'Saved!';

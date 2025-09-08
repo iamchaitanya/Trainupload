@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Inspector</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div class="container">
@@ -64,8 +63,8 @@
                         <input type="text" id="other-inspection-type" name="other-inspection-type">
                     </div>
 
-                    <fieldset>
-                        <legend>Onward Journey</legend>
+                    <details>
+                        <summary>Onward Journey</summary>
                         <div class="input-group">
                             <label for="onward-from">From</label>
                             <input type="text" id="onward-from" name="onward-from">
@@ -86,10 +85,10 @@
                             <label for="onward-ticket-amount">Ticket Amount</label>
                             <input type="number" id="onward-ticket-amount" name="onward-ticket-amount">
                         </div>
-                    </fieldset>
+                    </details>
 
-                    <fieldset>
-                        <legend>Return Journey</legend>
+                    <details>
+                        <summary>Return Journey</summary>
                         <div class="input-group">
                             <label for="return-from">From</label>
                             <input type="text" id="return-from" name="return-from">
@@ -110,10 +109,10 @@
                             <label for="return-ticket-amount">Ticket Amount</label>
                             <input type="number" id="return-ticket-amount" name="return-ticket-amount">
                         </div>
-                    </fieldset>
+                    </details>
 
-                    <fieldset>
-                        <legend>Expenses</legend>
+                    <details>
+                        <summary>Expenses</summary>
                         <div class="input-group">
                             <label for="halting-amount">Halting Amount</label>
                             <input type="number" id="halting-amount" name="halting-amount">
@@ -122,7 +121,7 @@
                             <label for="lodging-amount">Lodging Amount</label>
                             <input type="number" id="lodging-amount" name="lodging-amount">
                         </div>
-                    </fieldset>
+                    </details>
                 </div>
                 <button type="submit" id="save-button">
                     <span class="button-text">Save</span>

@@ -158,19 +158,52 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important; /* Add a subtle red glow */
 }
 
-/* Fieldset for grouping form sections */
-fieldset {
+/* Details/Summary for expandable sections */
+details {
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
     margin-top: 10px;
+    overflow: hidden; /* Ensures the content stays within the rounded corners */
 }
 
-legend {
+summary {
+    display: flex; /* Changed from list-item */
+    justify-content: space-between; /* Pushes the icon to the right */
+    align-items: center; /* Vertically aligns the text and icon */
+    background-color: #f8f9fa;
+    padding: 15px 20px;
     font-weight: 600;
-    color: #333;
-    padding: 0 10px;
-    font-size: 1.1em;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+summary:hover {
+    background-color: #e9ecef;
+}
+
+summary::-webkit-details-marker {
+    display: none; /* Hides the default triangle marker in WebKit browsers */
+}
+
+summary::after {
+    content: '+';
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff;
+    transition: transform 0.2s;
+    transform: rotate(0deg);
+}
+
+details[open] > summary::after {
+    transform: rotate(45deg);
+    content: '×'; /* Use a multiplication sign for a cleaner cross */
+    color: #dc3545;
+}
+
+details > div {
+    padding: 20px;
+    border-top: 1px solid #ddd;
 }
 
 /* Save Button Styles */
