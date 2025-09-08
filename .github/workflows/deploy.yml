@@ -1,0 +1,1 @@
+name: Deploy to GitHub Pages\n\non: \n  push:\n    branches: [ main ]\n\njobs:\n  build-and-deploy:\n    runs-on: ubuntu-latest\n\n    steps:\n    - name: Checkout \ud83d\udc4b\n      uses: actions/checkout@v2\n\n    - name: Deploy \ud83d\ude80\n      uses: peaceiris/actions-gh-pages@v3\n      with:\n        github_token: ${{ secrets.GITHUB_TOKEN }}\n        publish_dir: ./\n
