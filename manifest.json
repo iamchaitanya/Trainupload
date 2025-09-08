@@ -1,20 +1,18 @@
-
 {
   "name": "Bank Inspector",
   "short_name": "Inspector",
-  "start_url": ".",
+  "start_url": "/Trainupload/index.html",
   "display": "standalone",
-  "background_color": "#f4f7f6",
-  "theme_color": "#007bff",
-  "description": "A simple app for bank inspectors to log their daily inspection reports.",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
   "icons": [
     {
-      "src": "icons/icon-192x192.png",
+      "src": "/Trainupload/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/icon-512x512.png",
+      "src": "/Trainupload/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

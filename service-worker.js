@@ -1,12 +1,11 @@
-
 const CACHE_NAME = 'bank-inspector-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/app.js',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/Trainupload/',
+  '/Trainupload/index.html',
+  '/Trainupload/style.css',
+  '/Trainupload/app.js',
+  '/Trainupload/icons/icon-192x192.png',
+  '/Trainupload/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -27,7 +26,6 @@ self.addEventListener('fetch', event => {
           return response;
         }
         return fetch(event.request);
-      }
-    )
+      })
   );
 });
