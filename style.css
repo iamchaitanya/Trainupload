@@ -30,7 +30,7 @@ body {
 
 /* Header Styles */
 header {
-    background-color: #007bff;
+    background-color: #28a745; /* Updated to green */
     color: white;
     padding: 20px 30px;
     text-align: center;
@@ -121,7 +121,7 @@ main {
 }
 
 .radio-button-group input[type="radio"]:checked + label {
-    background-color: #007bff;
+    background-color: #28a745; /* Updated to green */
     color: white;
     font-weight: 600;
 }
@@ -148,8 +148,8 @@ input[type="time"]:focus,
 input[type="number"]:focus,
 select:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    border-color: #28a745; /* Updated to green */
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
 }
 
 /* Validation Error Style */
@@ -190,7 +190,7 @@ summary::after {
     content: '+';
     font-size: 1.5em;
     font-weight: bold;
-    color: #007bff;
+    color: #28a745; /* Updated to green */
     transition: transform 0.2s;
     transform: rotate(0deg);
 }
@@ -328,7 +328,7 @@ details > div {
 }
 
 #records-table .month-header td {
-    background-color: #007bff;
+    background-color: #28a745; /* Updated to green */
     color: white;
     font-weight: bold;
     text-align: center;
