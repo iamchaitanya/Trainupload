@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     dayStatusGroup.addEventListener('change', handleDayStatusChange);
 
-    [branchNameInput, dpCodeInput, inspectionTypeInput, otherInspectionTypeInput].forEach(input => {
+    [branchNameInput, inspectionTypeInput, otherInspectionTypeInput].forEach(input => {
         input.addEventListener('input', () => {
             if(input.value) input.classList.remove('error');
         });
@@ -266,11 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
         row.className = record.dayStatus;
         row.dataset.id = id;
 
-        let statusText, branchName, dpCode, inspectionType;
+        let statusText, branchName, inspectionType;
         if (record.dayStatus === 'inspection') {
             statusText = 'Inspection';
             branchName = record['branch-name'] || 'N/A';
-            dpCode = record['dp-code'] || 'N/A';
             if (record['inspection-type'] === 'Others') {
                 inspectionType = record['other-inspection-type'] || 'N/A';
             } else {
