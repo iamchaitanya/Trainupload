@@ -212,10 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 branchNameInput.classList.add('error');
                 isValid = false;
             }
-            if (!dpCodeInput.value) {
-                dpCodeInput.classList.add('error');
-                isValid = false;
-            }
             if (!inspectionTypeInput.value) {
                 inspectionTypeInput.classList.add('error');
                 isValid = false;
